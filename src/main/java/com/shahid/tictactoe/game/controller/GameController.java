@@ -20,7 +20,6 @@ import com.shahid.tictactoe.user.model.User;
 import com.shahid.tictactoe.user.service.MatchMakingService;
 
 @Controller
-@RequestMapping("/game")
 public class GameController {
     @Autowired
     private GameService gameService;
@@ -32,7 +31,7 @@ public class GameController {
     private MatchMakingService matchMakingService;
 
 
-    @MessageMapping("/move")
+    @MessageMapping("/game.makeMove")
     public void makeMove(@Payload GameDTO gameDto) {
         Game game = gameService.makeMove(gameDto.getGameId(), gameDto.getRow(), gameDto.getCol());
 
@@ -41,12 +40,12 @@ public class GameController {
         messagingTemplate.convertAndSendToUser(game.getPlayer2Id(), "/queue/game", game);
     }
 
-    @GetMapping("/history/{userId}")
+    @GetMapping("/game/history/{userId}")
     public ResponseEntity<List<Game>> getGames(@PathVariable String userId){
         return ResponseEntity.ok(gameService.findAllUserGames(userId));
     }
 
-    @GetMapping("/cancel/{userId}")
+    @GetMapping("/game/cancel/{userId}")
     public String cancelMatch(@PathVariable String userId){
         User user = matchMakingService.removePlayerFromMatchQueue(userId);
         return "Cancelled matching";

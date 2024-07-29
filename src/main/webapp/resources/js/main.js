@@ -580,7 +580,7 @@ function sendMoveToServer(row, col) {
     row: row,
     col: col,
   };
-  stompClient.send('/app/game/move', {}, JSON.stringify(message));
+  stompClient.send('/app/game.makeMove', {}, JSON.stringify(message));
   console.log('clicked button ' + row + ' : ' + col);
 }
 
