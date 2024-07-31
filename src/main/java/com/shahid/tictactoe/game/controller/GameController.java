@@ -36,6 +36,7 @@ public class GameController {
         Game game = gameService.makeMove(gameDto.getGameId(), gameDto.getRow(), gameDto.getCol());
 
         // send to both client and receivar
+        System.out.println("making move and senidng to users");
         messagingTemplate.convertAndSendToUser(game.getPlayer1Id(), "/queue/game", game);
         messagingTemplate.convertAndSendToUser(game.getPlayer2Id(), "/queue/game", game);
     }

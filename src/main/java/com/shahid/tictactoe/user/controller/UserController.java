@@ -69,7 +69,7 @@ public class UserController {
             return ResponseEntity.ok(userService.authenticateOrRegisterUser(user));
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            return null;
         }
     }
 
@@ -103,8 +103,8 @@ public class UserController {
 
         if (opponent != null) {
             Game game = gameService.createNewGame(user.getNickName(), opponent.getNickName());
-            messagingTemplate.convertAndSendToUser(user.getNickName(), "/queue/game", game);
-            messagingTemplate.convertAndSendToUser(opponent.getNickName(), "/queue/game", game);
+            messagingTemplate.convertAndSendToUser(user.getNickName(), "/queue/gamestart", game);
+            messagingTemplate.convertAndSendToUser(opponent.getNickName(), "/queue/gamestart", game);
         }
         return user;
     }

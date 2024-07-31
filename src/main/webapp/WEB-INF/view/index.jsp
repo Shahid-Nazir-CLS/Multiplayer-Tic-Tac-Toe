@@ -19,7 +19,6 @@
             <h2>Multiplayer Tic Tac Toe</h2>
 
             <div class="user-form" id="username-page">
-                <h2>Enter Chatroom</h2>
                 <form id="usernameForm">
                     <label for="nickname">Nickname:</label>
                     <input type="text" id="nickname" name="nickname" required>
@@ -30,7 +29,7 @@
                     <label for="fullname">Real Name:</label>
                     <input type="text" id="fullname" name="realname" required>
 
-                    <button type="submit">Enter Chatroom</button>
+                    <button type="submit">Enter Game</button>
                 </form>
             </div>
 

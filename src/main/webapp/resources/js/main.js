@@ -70,10 +70,12 @@ function onConnected() {
   chatPage.classList.remove('hidden');
 
   stompClient.subscribe(`/user/${nickname}/queue/messages`, onMessageReceived);
-  stompClient.subscribe(`/user/${nickname}/queue/game`, updateGameBoard);
+  stompClient.subscribe(`/user/${nickname}/queue/game`, (message) => {
+    updateGameBoard(JSON.parse(message.body));
+  });
   stompClient.subscribe(`/topic/public`, onMessageReceived);
 
-  stompClient.subscribe(`/user/${nickname}/queue/game`, (message) => {
+  stompClient.subscribe(`/user/${nickname}/queue/gamestart`, (message) => {
     handleGameStart(JSON.parse(message.body));
   });
 
@@ -178,6 +180,8 @@ async function handleGameStart(game) {
 }
 
 async function updateGameBoard(game) {
+  console.log('in update game board function');
+  console.log(game.board);
   if (!game.board) {
     return;
   }
