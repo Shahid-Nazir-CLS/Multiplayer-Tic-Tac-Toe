@@ -11,7 +11,7 @@
             <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/userstats.css">
             <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/userhistorycontainer.css">
             <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
-            <title>Chat Application</title>
+            <title>Tic Tac Toe</title>
         </head>
 
         <body>
